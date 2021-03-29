@@ -27,7 +27,15 @@ const protectRoute = asyncHandler(async (req, res, next) => {
         throw new Error('Not authorized, no token')
     }
 
-    //next()
 })
 
-export { protectRoute }
+const isAdmin = (req, res, next) => {
+    if(req.user && req.user.isAdmin) {
+        next()
+    } else {
+        res.status(401)
+        throw new Error('Not authorized as an admin')
+    }
+}
+
+export { protectRoute, isAdmin }

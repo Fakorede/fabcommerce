@@ -201,7 +201,7 @@ const OrderPage = ({match}) => {
               {!order.isPaid && (
                 <ListGroup.Item>
                   {loadingPay && <Loader />}
-                  {!sdkReady ? <Loader /> : order?.paymentMethod == 'Rave' 
+                  {!sdkReady ? <Loader /> : order?.paymentMethod === 'Rave' 
                     ? <RavePayment publicKey={ravePublicKey} amount={order.totalPrice} handleSuccess={raveSuccessHandler} />
                     : <PaystackPayment publicKey={paystackPublicKey} amount={order.totalPrice} handleSuccess={stackSuccessHandler} />
                   }
